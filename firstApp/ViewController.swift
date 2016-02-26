@@ -25,7 +25,9 @@ class ViewController: UIViewController {
         
         let submitAction = UIAlertAction(title: "Submit", style: .Default){
             [unowned self, ac] (action: UIAlertAction) in
-            //our code
+            let answer = ac.textFields![0]
+            self.labelText.text = answer.text
+            
         }
         
         ac.addAction(submitAction)
