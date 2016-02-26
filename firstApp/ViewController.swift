@@ -20,7 +20,18 @@ class ViewController: UIViewController {
     }
     
     func promptForMsg(){
-        labelText.text = "You clicked plus"
+        let ac = UIAlertController(title: "Enter Message", message: nil, preferredStyle: .Alert)
+        ac.addTextFieldWithConfigurationHandler(nil)
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .Default){
+            [unowned self, ac] (action: UIAlertAction) in
+            //our code
+        }
+        
+        ac.addAction(submitAction)
+        presentViewController(ac, animated: true, completion: nil)
+        
+        labelText.text = "You clicked plus!"
     }
 
     override func didReceiveMemoryWarning() {
