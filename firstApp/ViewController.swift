@@ -21,14 +21,26 @@ class ViewController: UIViewController {
     
     func promptForMsg(){
         let ac = UIAlertController(title: "Enter Message", message: nil, preferredStyle: .Alert)
-        ac.addTextFieldWithConfigurationHandler(nil)
+        ac.addTextFieldWithConfigurationHandler{(textField: UITextField) in
+            textField.keyboardType = UIKeyboardType.DecimalPad
+            textField.placeholder = "Weight (kg)"
+        }
+        ac.addTextFieldWithConfigurationHandler{(textField: UITextField) in
+            textField.keyboardType = UIKeyboardType.DecimalPad
+            textField.placeholder = "Height (m)"
+        }
+        ac.addTextFieldWithConfigurationHandler(<#T##configurationHandler: ((UITextField) -> Void)?##((UITextField) -> Void)?##(UITextField) -> Void#>)
         
         let submitAction = UIAlertAction(title: "Submit", style: .Default){
             [unowned self, ac] (action: UIAlertAction) in
-            let answer = ac.textFields![0]
-            self.labelText.text = answer.text
+            let weight = Float(ac.textFields![0].text!)
+            let height = Float(ac.textFields![1].text!)
+            let bmi = weight! / (height! * height!)
+            self.labelText.text = String(bmi)
             
         }
+        
+        
         
         ac.addAction(submitAction)
         presentViewController(ac, animated: true, completion: nil)
