@@ -29,7 +29,6 @@ class ViewController: UIViewController {
             textField.keyboardType = UIKeyboardType.DecimalPad
             textField.placeholder = "Height (m)"
         }
-        ac.addTextFieldWithConfigurationHandler(<#T##configurationHandler: ((UITextField) -> Void)?##((UITextField) -> Void)?##(UITextField) -> Void#>)
         
         let submitAction = UIAlertAction(title: "Submit", style: .Default){
             [unowned self, ac] (action: UIAlertAction) in
