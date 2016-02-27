@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class ViewController: UIViewController {
 
@@ -15,8 +16,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "promptForMsg")
-        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "promptForMsg"),
+        UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareTapped")]
+
     }
     
     func promptForMsg(){
@@ -35,7 +37,7 @@ class ViewController: UIViewController {
             let weight = Float(ac.textFields![0].text!)
             let height = Float(ac.textFields![1].text!)
             let bmi = weight! / (height! * height!)
-            self.labelText.text = String(bmi)
+            self.labelText.text = "Your BMI is " + String(bmi)
             
         }
         
@@ -45,6 +47,12 @@ class ViewController: UIViewController {
         presentViewController(ac, animated: true, completion: nil)
         
         labelText.text = "You clicked plus!"
+    }
+    
+    func shareTapped(){
+        let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        vc.setInitialText(labelText.text)
+        presentViewController(vc, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
