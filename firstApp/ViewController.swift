@@ -13,8 +13,13 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var labelText: UILabel!
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let myBMI = self.defaults.floatForKey("myBMI")
+        self.labelText.text = "Your BMI is " + String(myBMI)
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "promptForMsg"),
         UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareTapped")]
@@ -37,7 +42,16 @@ class ViewController: UIViewController {
             let weight = Float(ac.textFields![0].text!)
             let height = Float(ac.textFields![1].text!)
             let bmi = weight! / (height! * height!)
-            self.labelText.text = "Your BMI is " + String(bmi)
+            
+            
+            
+            self.defaults.setFloat(weight!, forKey: "myWeight")
+            self.defaults.setFloat(height!, forKey: "myHeight")
+            self.defaults.setFloat(bmi, forKey: "myBMI")
+            
+            let myBMI = self.defaults.floatForKey("myBMI")
+            
+            self.labelText.text = "Your BMI is " + String(myBMI)
             
         }
         
@@ -52,6 +66,7 @@ class ViewController: UIViewController {
     func shareTapped(){
         let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
         vc.setInitialText(labelText.text)
+        vc.addURL(NSURL(string: "http://apple.com"))
         presentViewController(vc, animated: true, completion: nil)
     }
 

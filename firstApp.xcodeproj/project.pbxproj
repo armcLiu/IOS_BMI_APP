@@ -290,6 +290,7 @@
 				9B6596011C80DC9500372105 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
