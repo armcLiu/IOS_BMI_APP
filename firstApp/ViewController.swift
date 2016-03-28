@@ -15,6 +15,11 @@ class ViewController: UIViewController {
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
+    var bmiList = DataList()
+//    var history = [BmiInfo]()
+    
+    var timeFormatter = NSDateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +27,7 @@ class ViewController: UIViewController {
         self.labelText.text = "Your BMI is " + String(myBMI)
         
         navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "promptForMsg"),
+        UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "promptHistory"),
         UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareTapped")]
 
     }
@@ -43,16 +49,20 @@ class ViewController: UIViewController {
             let height = Float(ac.textFields![1].text!)
             let bmi = weight! / (height! * height!)
             
-            
-            
-            self.defaults.setFloat(weight!, forKey: "myWeight")
-            self.defaults.setFloat(height!, forKey: "myHeight")
             self.defaults.setFloat(bmi, forKey: "myBMI")
             
             let myBMI = self.defaults.floatForKey("myBMI")
             
             self.labelText.text = "Your BMI is " + String(myBMI)
             
+            
+            let date = NSDate()
+            let strNowTime = self.timeFormatter.stringFromDate(date) as String
+            
+            let strBmi = String(bmi)
+            
+            self.bmiList.history.append(BmiInfo(date: strNowTime, bmi: strBmi))
+
         }
         
         
@@ -63,6 +73,10 @@ class ViewController: UIViewController {
         labelText.text = "You clicked plus!"
     }
     
+    func promptHistory(){
+        
+    }
+    
     func shareTapped(){
         let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
         vc.setInitialText(labelText.text)
@@ -70,11 +84,24 @@ class ViewController: UIViewController {
         presentViewController(vc, animated: true, completion: nil)
     }
 
+    //保存数据
+    @IBAction func saveData(sender:AnyObject) {
+        bmiList.saveData()
+    }
+    
+    //读取数据
+    @IBAction func loadData(sender:AnyObject) {
+        bmiList.loadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
 }
+
+
+
+
 

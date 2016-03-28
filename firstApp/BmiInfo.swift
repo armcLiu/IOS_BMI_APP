@@ -1,5 +1,5 @@
 //
-//  BserInfo.swift
+//  BmiInfo.swift
 //  firstApp
 //
 //  Created by 刘志兴 on 16/3/26.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class UserInfo: NSObject {
+class BmiInfo: NSObject {
     var date:String
     var bmi:String
     
