@@ -32,10 +32,20 @@ class ViewController: UIViewController {
         UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "promptHistory"),
         UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareTapped")]
         
-
+        estimateHealthValue(Float(myBMI))
     }
     
-
+    func estimateHealthValue(BMI:Float){
+        if(BMI < 18.5){
+            self.healthValue.text = "You are too thin."
+        }
+        else if(BMI > 23.9){
+            self.healthValue.text = "You are too fat."
+        }
+        else{
+            self.healthValue.text = "You are very Healthy, keep it."
+        }
+    }
     
     func promptForMsg(){
         let ac = UIAlertController(title: "Enter Message", message: nil, preferredStyle: .Alert)
@@ -59,7 +69,7 @@ class ViewController: UIViewController {
             let myBMI = self.defaults.floatForKey("myBMI")
             
             self.labelText.text = "Your BMI is " + String(myBMI)
-            
+            self.estimateHealthValue(Float(myBMI))
             
             let date = NSDate()
             let strNowTime = self.timeFormatter.stringFromDate(date) as String
@@ -77,6 +87,7 @@ class ViewController: UIViewController {
         presentViewController(ac, animated: true, completion: nil)
         
         labelText.text = "You clicked plus!"
+        healthValue.text = ""
     }
     
     func promptHistory(){
