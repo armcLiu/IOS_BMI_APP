@@ -22,15 +22,25 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXx-Is-GPP">
+                                <rect key="frame" x="279" y="433" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HUJ-2m-7HY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Fp-GX-mJj"/>
-                            <constraint firstItem="HUJ-2m-7HY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="269" id="lYB-NJ-l1x"/>
+                            <constraint firstItem="AXx-Is-GPP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Jz8-Js-BNT"/>
+                            <constraint firstItem="HUJ-2m-7HY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="269" id="jEu-O6-SO8"/>
+                            <constraint firstItem="AXx-Is-GPP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n6W-2N-fV6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Cy-eb-ZBi"/>
                     <connections>
+                        <outlet property="HealthValue" destination="AXx-Is-GPP" id="7RL-l7-kx5"/>
+                        <outlet property="healthValue" destination="AXx-Is-GPP" id="vI0-SC-j30"/>
                         <outlet property="labelText" destination="HUJ-2m-7HY" id="VwF-F0-qmW"/>
                     </connections>
                 </viewController>

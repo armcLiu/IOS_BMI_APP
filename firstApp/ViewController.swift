@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var labelText: UILabel!
     
+    @IBOutlet weak var healthValue: UILabel!
+    
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var bmiList = DataList()
@@ -29,8 +31,11 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "promptForMsg"),
         UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: "promptHistory"),
         UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "shareTapped")]
+        
 
     }
+    
+
     
     func promptForMsg(){
         let ac = UIAlertController(title: "Enter Message", message: nil, preferredStyle: .Alert)
@@ -58,10 +63,11 @@ class ViewController: UIViewController {
             
             let date = NSDate()
             let strNowTime = self.timeFormatter.stringFromDate(date) as String
-            
+            let strWeight = String(weight)
+            let strHeight = String(height)
             let strBmi = String(bmi)
             
-            self.bmiList.history.append(BmiInfo(date: strNowTime, bmi: strBmi))
+            self.bmiList.history.append(BmiInfo(date: strNowTime, weight: strWeight, height: strHeight, bmi: strBmi))
 
         }
         
